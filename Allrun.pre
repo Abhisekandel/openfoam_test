@@ -1,0 +1,39 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+
+# Make dummy 0 directory
+#mkdir 0
+
+#runApplication blockMesh
+# \cp system/decomposeParDict.hierarchical system/decomposeParDict
+#runApplication decomposePar -decomposeParDict system/decomposeParDict.hierarchical
+
+# \cp system/decomposeParDict.ptscotch system/decomposeParDict
+#runParallel snappyHexMesh -decomposeParDict system/decomposeParDict.ptscotch -profiling -overwrite
+
+#runApplication decomposePar -fileHandler collated
+#runParallel snappyHexMesh -overwrite -fileHandler collated 
+runApplication reconstructParMesh -constant -fileHandler collated -mergeTol 1e-6
+
+#runApplication snappyHexMesh -overwrite
+runApplication mergeMeshes ../pimpleFoam ../pointwise -overwrite
+
+runApplication -s 1 topoSet -dict system/topoSetDict
+#find . -iname '*level*' -type f -delete
+
+#- Set the initial fields
+restore0Dir #-processor
+
+runApplication setFields
+python3.6 ../pyfoam/editBoundary.py
+runApplication renumberMesh -constant -overwrite
+runApplication checkMesh -writeAllFields
+#runApplication checkMesh -writeFields '(nonOrthoAngle)' -constant
+
+#runParallel renumberMesh -overwrite
+#runParallel checkMesh -writeFields '(nonOrthoAngle)' -constant
+
+#------------------------------------------------------------------------------

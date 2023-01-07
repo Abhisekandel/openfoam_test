@@ -1,0 +1,274 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.2                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      dynamicMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include        "../0/include/initialConditions"
+//omegaRot      555.0147;
+
+dynamicFvMesh   dynamicMotionSolverFvMesh;
+motionSolverLibs ("libdynamicMesh.so");
+solver		multiSolidBodyMotionSolver;
+
+//omegaRot      555.0147;
+
+snappyBackgroundMesh
+{
+	//omegaRot      555.0147;
+	solidBodyMotionFunction  rotatingNoF1IntegrationMotion;
+        rotatingNoF1IntegrationMotionCoeffs
+	{
+		origin        (0 0 0);
+		axis          (0 0 1);
+		//omegaRot      555.0147;
+		omega 		  $omegaRot;//555.0147;
+//		omega
+//		{
+//			type            scale;
+//			scale           linearRamp;
+//			scaleCoeffs
+//				{
+//					start           12e-4;
+//					duration        96e-4;
+//				}
+//			value $omegaRot;//555.0147;
+//		}
+	}
+}
+
+AMIBladeZone0
+{
+	solidBodyMotionFunction multiMotion;
+	rotatingMotion
+	{
+		solidBodyMotionFunction  rotatingNoF1IntegrationMotion;
+		rotatingNoF1IntegrationMotionCoeffs
+		{
+			origin        (0 0 0);
+			axis          (0 0 1);
+			omega         $omegaRot;//555.0147;
+/*
+			omega
+			{
+
+				type            scale;
+				scale           linearRamp;
+				scaleCoeffs
+					{
+						start           12e-4;
+						duration        96e-4;
+					}
+				value $omegaRot;//555.0147;
+			}
+*/
+		}
+	}
+	pitchingMotion  /// this instruction MUST come after rotor motion, otherwise the center of rotation is wrong
+	{
+		solidBodyMotionFunction  donnersSineMotion;//oscillatingRotatingOffsetFunction1Motion;
+		origin        (0.08425 0 0);
+		axis     (0 0 1);
+		//amplitude     (0 0 -25);  // degs
+		initialOffset 0; // offset of foil oscillation at t=0, multiple of pi, in rad
+		omega         $omegaRot;//555.0147;
+		R             0.08425;
+		d             0.01696;
+		e             0.00995;
+		l             0.0858;
+		epsilon       0.0;
+/*
+		omega
+		{
+			type            scale;
+			scale           linearRamp;
+			scaleCoeffs
+				{
+					start           12e-4;
+					duration        96e-4;
+				}
+			value $omegaRot;//555.0147;
+		}
+*/
+	}
+}
+
+AMIBladeZone1
+{
+	solidBodyMotionFunction multiMotion;
+	rotatingMotion
+	{
+		solidBodyMotionFunction  rotatingNoF1IntegrationMotion;
+		rotatingNoF1IntegrationMotionCoeffs
+		{
+			origin        (0 0 0);
+			axis          (0 0 1);
+			omega         $omegaRot;//555.0147;
+/*
+			omega
+			{
+
+				type            scale;
+				scale           linearRamp;
+				scaleCoeffs
+					{
+						start           12e-4;
+						duration        96e-4;
+					}
+				value $omegaRot;//555.0147;
+			}
+*/
+		}
+	}
+	pitchingMotion  /// this instruction MUST come after rotor motion, otherwise the center of rotation is wrong
+	{
+		solidBodyMotionFunction  donnersSineMotion;//oscillatingRotatingOffsetFunction1Motion;
+		origin        (0 0.08425 0);
+		axis     (0 0 1);
+		//amplitude     (0 0 -25);  // degs
+		initialOffset -1.5; // offset of foil oscillation at t=0, multiple of pi, in rad
+		omega         $omegaRot;//555.0147;
+		R             0.08425;
+		d             0.01696;
+		e             0.00995;
+		l             0.0858;
+		epsilon       0.0;
+/*
+		omega
+		{
+			type            scale;
+			scale           linearRamp;
+			scaleCoeffs
+				{
+					start           12e-4;
+					duration        96e-4;
+				}
+			value $omegaRot;//555.0147;
+		}
+*/
+	}
+}
+
+AMIBladeZone2
+{
+	solidBodyMotionFunction multiMotion;
+	rotatingMotion
+	{
+		solidBodyMotionFunction  rotatingNoF1IntegrationMotion;
+		rotatingNoF1IntegrationMotionCoeffs
+		{
+			origin        (0 0 0);
+			axis          (0 0 1);
+			omega         $omegaRot;//555.0147;
+/*
+			omega
+			{
+
+				type            scale;
+				scale           linearRamp;
+				scaleCoeffs
+					{
+						start           12e-4;
+						duration        96e-4;
+					}
+				value $omegaRot;//555.0147;
+			}
+*/
+		}
+	}
+	pitchingMotion  /// this instruction MUST come after rotor motion, otherwise the center of rotation is wrong
+	{
+		solidBodyMotionFunction  donnersSineMotion;//oscillatingRotatingOffsetFunction1Motion;
+		origin        (-0.08425 0 0);
+		axis     (0 0 1);
+		//amplitude     (0 0 -25);  // degs
+		initialOffset -1; // offset of foil oscillation at t=0, multiple of pi, in rad
+		omega         $omegaRot;//555.0147;
+		R             0.08425;
+		d             0.01696;
+		e             0.00995;
+		l             0.0858;
+		epsilon       0.0;
+/*
+		omega
+		{
+			type            scale;
+			scale           linearRamp;
+			scaleCoeffs
+				{
+					start           12e-4;
+					duration        96e-4;
+				}
+			value $omegaRot;//555.0147;
+		}
+*/
+	}
+}
+
+AMIBladeZone3
+{
+	solidBodyMotionFunction multiMotion;
+	rotatingMotion
+	{
+		solidBodyMotionFunction  rotatingNoF1IntegrationMotion;
+		rotatingNoF1IntegrationMotionCoeffs
+		{
+			origin        (0 0 0);
+			axis          (0 0 1);
+			omega         $omegaRot;//555.0147;
+/*
+			omega
+			{
+
+				type            scale;
+				scale           linearRamp;
+				scaleCoeffs
+					{
+						start           12e-4;
+						duration        96e-4;
+					}
+				value $omegaRot;//555.0147;
+			}
+*/
+		}
+	}
+	pitchingMotion  /// this instruction MUST come after rotor motion, otherwise the center of rotation is wrong
+	{
+		solidBodyMotionFunction  donnersSineMotion;//oscillatingRotatingOffsetFunction1Motion;
+		origin        (0 -0.08425 0);
+		axis     (0 0 1);
+		//amplitude     (0 0 -25);  // degs
+		initialOffset -0.5; // offset of foil oscillation at t=0, multiple of pi, in rad
+		omega         $omegaRot;//555.0147;
+		R             0.08425;
+		d             0.01696;
+		e             0.00995;
+		l             0.0858;
+		epsilon       0.0;
+/*
+		omega
+		{
+			type            scale;
+			scale           linearRamp;
+			scaleCoeffs
+				{
+					start           12e-4;
+					duration        96e-4;
+				}
+			value $omegaRot;//555.0147;
+		}
+*/
+	}
+}
+

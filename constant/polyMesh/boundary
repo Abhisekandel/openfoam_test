@@ -1,0 +1,216 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2106                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      binary;
+    arch        "LSB;label=32;scalar=64";
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+22
+(
+    front
+    {
+        type            symmetry;
+        inGroups        1(symmetry);
+        nFaces          39264;
+        startFace       31982565;
+    }
+    AMI0_outer
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          16599;
+        startFace       32021829;
+        matchTolerance  0.0001;
+        transform       noOrdering;
+        neighbourPatch  AMI0_inner;
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    AMI1_outer
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          16599;
+        startFace       32038428;
+        matchTolerance  0.0001;
+        transform       noOrdering;
+        neighbourPatch  AMI1_inner;
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    AMI2_outer
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          16599;
+        startFace       32055027;
+        matchTolerance  0.0001;
+        transform       noOrdering;
+        neighbourPatch  AMI2_inner;
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    AMI3_outer
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          16599;
+        startFace       32071626;
+        matchTolerance  0.0001;
+        transform       noOrdering;
+        neighbourPatch  AMI3_inner;
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    Bounds
+    {
+        type            patch;
+        nFaces          1405;
+        startFace       32088225;
+    }
+    AMI0_inner
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          22842;
+        startFace       32089630;
+        matchTolerance  0.0001;
+        transform       noOrdering;
+        neighbourPatch  AMI0_outer;
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    AMI0_symPlane
+    {
+        type            symmetry;
+        inGroups        1(symmetry);
+        nFaces          21450;
+        startFace       32112472;
+    }
+    AMI1_inner
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          22842;
+        startFace       32133922;
+        matchTolerance  0.0001;
+        transform       noOrdering;
+        neighbourPatch  AMI1_outer;
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    AMI1_symPlane
+    {
+        type            symmetry;
+        inGroups        1(symmetry);
+        nFaces          21450;
+        startFace       32156764;
+    }
+    AMI2_inner
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          22842;
+        startFace       32178214;
+        matchTolerance  0.0001;
+        transform       noOrdering;
+        neighbourPatch  AMI2_outer;
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    AMI2_symPlane
+    {
+        type            symmetry;
+        inGroups        1(symmetry);
+        nFaces          21450;
+        startFace       32201056;
+    }
+    AMI3_inner
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          22842;
+        startFace       32222506;
+        matchTolerance  0.0001;
+        transform       noOrdering;
+        neighbourPatch  AMI3_outer;
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    AMI3_symPlane
+    {
+        type            symmetry;
+        inGroups        1(symmetry);
+        nFaces          21450;
+        startFace       32245348;
+    }
+    airfoilDown0
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          11421;
+        startFace       32266798;
+    }
+    airfoilDown1
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          11421;
+        startFace       32278219;
+    }
+    airfoilDown2
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          11421;
+        startFace       32289640;
+    }
+    airfoilDown3
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          11421;
+        startFace       32301061;
+    }
+    airfoilUp0
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          11421;
+        startFace       32312482;
+    }
+    airfoilUp1
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          11421;
+        startFace       32323903;
+    }
+    airfoilUp2
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          11421;
+        startFace       32335324;
+    }
+    airfoilUp3
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          11421;
+        startFace       32346745;
+    }
+)
+
+// ************************************************************************* //
